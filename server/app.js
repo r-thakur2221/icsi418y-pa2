@@ -1,6 +1,9 @@
 const express=require('express');
 const app=express();
 
+//just run db as a part of this program to establish db connection
+require('./db.js');
+
 
 //routing level middleware
 const authRouter=require("./controllers/auth.controller.js");
