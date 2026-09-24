@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const dbconfigs = require("./configs/db.config");
 
-const connectionURL = dbconfigs.dbConnectionURL + "/" + dbconfigs.dbName;
+const connectionURL = dbconfigs.dbConnectionURL;
 
 mongoose.connect(connectionURL)
     .then(() => {

@@ -1,7 +1,11 @@
+//load the env variables
+require("dotenv").config();
+
 const express=require('express');
 const app=express();
 
 const cors=require('cors');
+
 
 //just run db as a part of this program to establish db connection
 require('./db.js');
@@ -38,12 +42,12 @@ app.use((err, req, res, next) => {
     });
   });
 
-app.listen(8080,(err)=>{
+app.listen(process.env.PORT,(err)=>{
     if(err){
         console.log("Server Error: ",err);
     }
     else{
-        console.log("Successfully Connected at Port 8080");
+        console.log(`Successfully Connected at Port ${process.env.PORT}`);
     }
 })
 
