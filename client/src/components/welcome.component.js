@@ -23,7 +23,7 @@ export const Welcome = () => {
         </p>
 
         <Link to="/" className="welcome-btn">
-          ← Back to Login
+          Logout
         </Link>
       </div>
     </div>

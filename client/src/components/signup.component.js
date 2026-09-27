@@ -68,7 +68,7 @@ export const Signup = () => {
     <form onSubmit={handleSubmit} className="form">
       <h2>Signup</h2>
 
-      <label>First Name</label>
+      <label>First Name*</label>
       <input
         type="text"
         name="f_name"
@@ -77,7 +77,7 @@ export const Signup = () => {
         placeholder="Enter first name"
       />
 
-      <label>Last Name</label>
+      <label>Last Name*</label>
       <input
         type="text"
         name="l_name"
@@ -86,7 +86,7 @@ export const Signup = () => {
         placeholder="Enter last name"
       />
 
-      <label>Username</label>
+      <label>Username*</label>
       <input
         type="text"
         name="username"
@@ -95,7 +95,7 @@ export const Signup = () => {
         placeholder="Enter username"
       />
 
-      <label>Password</label>
+      <label>Password*</label>
       <input
         type="password"
         name="password"

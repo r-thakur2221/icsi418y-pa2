@@ -6,6 +6,6 @@ const httpClient = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-console.log("HTTP BASE URL >>>", httpClient.defaults.baseURL);
+// console.log("HTTP BASE URL >>>", httpClient.defaults.baseURL);
 
 export default httpClient;

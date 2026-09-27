@@ -53,7 +53,7 @@ export const Login = () => {
     <form onSubmit={handleSubmit} className="form">
       <h2>Login</h2>
 
-      <label>Username</label>
+      <label>Username*</label>
       <input
         type="text"
         name="username"
@@ -62,7 +62,7 @@ export const Login = () => {
         placeholder="Enter username"
       />
 
-      <label>Password</label>
+      <label>Password*</label>
       <input
         type="password"
         name="password"
