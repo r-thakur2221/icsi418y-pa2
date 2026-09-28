@@ -11,7 +11,6 @@ const cors=require('cors');
 require('./db.js');
 
 const authRouter=require("./controllers/auth.controller.js");
-const userRouter=require("./controllers/user.controller.js");
 
 
 //third-party middleware
@@ -21,7 +20,6 @@ app.use(express.json());
 
 //use routing level middleware
 app.use("/auth",authRouter);
-app.use("/user",userRouter);
 
 //404 catch block
 app.use((req,res,next)=>{
