@@ -51,8 +51,11 @@ router.route("/register").post(async (req, res, next) => {
 
 // POST /auth/login  — Login
 router.route("/login").post(async (req, res, next) => {
+  console.log("I am here at 1")
   try {
     const { username, password } = req.body;
+
+    console.log("I am here at 2 req.body is ",req.body)
 
     // Validate fields present
     if (!username || !password) {
@@ -90,6 +93,18 @@ router.route("/login").post(async (req, res, next) => {
         username: user.username,
       },
     });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /auth/users  — List all registered users
+router.route("/users").get(async (req, res, next) => {
+  try {
+    const users = await UserModel.find({}, "f_name l_name username").sort({
+      username: 1,
+    });
+    return res.status(200).json({ success: true, users });
   } catch (err) {
     next(err);
   }
