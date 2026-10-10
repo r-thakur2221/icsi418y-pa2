@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./login.component.css";
 import { Link, useNavigate } from "react-router-dom";
-import httpClient from "./../util/httpClient";
+import httpClient from "../../util/httpClient";
 
 export const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });

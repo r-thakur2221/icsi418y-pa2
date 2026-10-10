@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./signup.component.css";
 import { Link, useNavigate } from "react-router-dom";
-import httpClient from "./../util/httpClient";
+import httpClient from "../../util/httpClient";
 
 export const Signup = () => {
   const [form, setForm] = useState({

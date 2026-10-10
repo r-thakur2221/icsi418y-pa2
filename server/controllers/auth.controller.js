@@ -51,11 +51,8 @@ router.route("/register").post(async (req, res, next) => {
 
 // POST /auth/login  — Login
 router.route("/login").post(async (req, res, next) => {
-  console.log("I am here at 1")
   try {
     const { username, password } = req.body;
-
-    console.log("I am here at 2 req.body is ",req.body)
 
     // Validate fields present
     if (!username || !password) {

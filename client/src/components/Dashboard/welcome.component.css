@@ -1,0 +1,41 @@
+/* welcome.component.css */
+
+.welcome-page {
+  text-align: center;
+  margin-top: 60px;
+  padding: 0 20px;
+}
+
+.welcome-page h1 {
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.welcome-page p {
+  color: #475569;
+  font-size: 15px;
+}
+
+.welcome-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.welcome-actions button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.welcome-actions button:hover {
+  background-color: #1d4ed8;
+}
