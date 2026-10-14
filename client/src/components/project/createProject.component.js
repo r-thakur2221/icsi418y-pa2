@@ -2,28 +2,35 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./createProject.component.css";
 import httpClient from "./../../util/httpClient";
+import { getCurrentUser } from "./../../util/auth";
 
 export const CreateProject = () => {
+  const navigate = useNavigate();
+  const user = getCurrentUser();
+
   const [form, setForm] = useState({
     name: "",
     description: "",
     status: "Planning",
-    project_lead_id: "",
+    project_lead_id: user?._id || "",
   });
   const [users, setUsers] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
-  const navigate = useNavigate();
 
-  // Load users for the Project Lead dropdown
+  useEffect(() => {
+    if (!user?._id) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   useEffect(() => {
     httpClient
       .get("/auth/users")
       .then((res) => setUsers(res.data.users || []))
-      .catch((err) => {
-        console.log("Error loading users:", err);
+      .catch(() => {
         setIsError(true);
         setMessage("Could not load users. Please refresh.");
       })
@@ -54,19 +61,12 @@ export const CreateProject = () => {
 
     httpClient
       .post("/projects", form)
-      .then((res) => {
+      .then(() => {
         setIsError(false);
         setMessage("Project created successfully! Redirecting...");
-        setForm({
-          name: "",
-          description: "",
-          status: "Planning",
-          project_lead_id: "",
-        });
         setTimeout(() => navigate("/projects"), 1200);
       })
       .catch((err) => {
-        console.log("Create project error:", err);
         setIsError(true);
         setMessage(
           err.response?.data?.msg ||

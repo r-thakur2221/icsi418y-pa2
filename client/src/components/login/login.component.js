@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./login.component.css";
 import { Link, useNavigate } from "react-router-dom";
 import httpClient from "../../util/httpClient";
+import { setCurrentUser } from "../../util/auth";
 
 export const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -16,8 +17,6 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // reset previous messages
     setMessage("");
     setIsError(false);
 
@@ -32,11 +31,13 @@ export const Login = () => {
     httpClient
       .post("/auth/login", form)
       .then((response) => {
-        console.log("i am response>>", response);
+        // Save the full user (with _id) for later ownership checks
+        if (response.data?.user) {
+          setCurrentUser(response.data.user);
+        }
         navigate(`/welcome/${form.username}`);
       })
       .catch((err) => {
-        console.log("Error:", err);
         setIsError(true);
         setMessage(
           err.response?.data?.msg ||
@@ -44,9 +45,7 @@ export const Login = () => {
             "Login failed. Please try again."
         );
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   };
 
   return (

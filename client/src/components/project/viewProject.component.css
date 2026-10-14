@@ -68,3 +68,50 @@
   .success {
     color: #16a34a;
   }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .filters button {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  
+  .filters button:hover {
+    border-color: #94a3b8;
+  }
+  
+  .filters button.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+  }
+  
+  .projects-table button.secondary {
+    background-color: #64748b;
+  }
+  
+  .projects-table button.secondary:hover {
+    background-color: #475569;
+  }
+
+  .action-cell {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .action-cell button {
+    white-space: nowrap;
+  }

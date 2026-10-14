@@ -1,0 +1,135 @@
+/* editProject.component.css */
+
+.page {
+    max-width: 620px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+  
+  .page h2 {
+    color: #1e293b;
+    margin-bottom: 6px;
+  }
+  
+  .subtitle {
+    color: #475569;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 22px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    margin-top: 12px;
+  }
+  
+  .form label {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #334155;
+  }
+  
+  .form input,
+  .form textarea,
+  .form select {
+    padding: 9px 10px;
+    margin-top: 4px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .form input:focus,
+  .form textarea:focus,
+  .form select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  }
+  
+  .form textarea {
+    resize: vertical;
+    min-height: 70px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  
+  .row button {
+    padding: 10px 16px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+  
+  .row button:hover:not(:disabled) {
+    background-color: #1d4ed8;
+  }
+  
+  .row button:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+  }
+  
+  .row button.secondary {
+    background-color: #64748b;
+  }
+  
+  .row button.secondary:hover:not(:disabled) {
+    background-color: #475569;
+  }
+  
+  .row button.danger {
+    background-color: #dc2626;
+  }
+  
+  .row button.danger:hover:not(:disabled) {
+    background-color: #b91c1c;
+  }
+  
+  .notice {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 10px 14px;
+    color: #1e3a8a;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 14px 0;
+  }
+  
+  .error {
+    color: #dc2626;
+    font-size: 14px;
+  }
+  
+  .success {
+    color: #16a34a;
+    font-size: 14px;
+  }
+  
+  .page p a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .page p a:hover {
+    text-decoration: underline;
+  }
