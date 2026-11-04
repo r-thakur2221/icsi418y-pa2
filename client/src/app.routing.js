@@ -7,6 +7,7 @@ import { CreateProject } from "./components/project/createProject.component";
 import { ViewProjects } from "./components/project/viewProject.component";
 import { ManageMembers } from "./components/manageMember/manageMember.component";
 import { EditProject } from "./components/project/editProject.component";
+import { ProjectBacklog } from "./components/story/projectBackLog.component";
 
 import notFoundImg from "./images/notfound.png";
 
@@ -36,6 +37,9 @@ export const AppRouting = () => {
         <Route path="/projects/:projectId/members" element={<ManageMembers />} />
 
         <Route path="/projects/:projectId/edit" element={<EditProject />} />
+
+        <Route path="/backlog" element={<ProjectBacklog />} />
+        <Route path="/projects/:projectId/backlog" element={<ProjectBacklog />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

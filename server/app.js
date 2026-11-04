@@ -13,6 +13,7 @@ require('./db.js');
 const authRouter=require("./controllers/auth.controller.js");
 const projectRouter = require("./controllers/project.controller.js");
 const membershipRouter = require("./controllers/membership.controller.js");
+const storyRouter = require("./controllers/story.controller.js");
 
 
 //third-party middleware
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use("/auth",authRouter);
 app.use("/projects", projectRouter);
 app.use("/projects/:projectId/members", membershipRouter);
+app.use("/projects/:projectId/stories", storyRouter);
 
 //404 catch block
 app.use((req,res,next)=>{

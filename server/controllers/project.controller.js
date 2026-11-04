@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const ProjectModel = require("./../models/project.model");
 const UserModel = require("./../models/user.model");
 const ProjectMembershipModel = require("./../models/projectMembership.model");
+const UserStoryModel = require("./../models/userStory.model");
+
 
 const VALID_STATUSES = ["Planning", "Active", "Completed"];
 
@@ -257,7 +259,8 @@ router.route("/:id").delete(async (req, res, next) => {
         .status(403)
         .json({ success: false, msg: "Only the Project Lead can delete this project." });
     }
-
+    
+    await UserStoryModel.deleteMany({ project_id: id });
     await ProjectMembershipModel.deleteMany({ project_id: id });
     await ProjectModel.findByIdAndDelete(id);
 

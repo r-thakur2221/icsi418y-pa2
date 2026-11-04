@@ -1,0 +1,271 @@
+/* story.component.css */
+
+.page {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+  
+  .page h2 {
+    color: #1e293b;
+    margin-bottom: 8px;
+  }
+  
+  .page h3 {
+    color: #1e293b;
+    margin: 24px 0 12px;
+  }
+  
+  .subtitle {
+    color: #475569;
+    margin-bottom: 18px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  
+  .row button {
+    padding: 8px 14px;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .row button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .row button.secondary {
+    background-color: #64748b;
+  }
+  
+  .row button.secondary:hover {
+    background-color: #475569;
+  }
+  
+  .row button.danger {
+    background-color: #dc2626;
+  }
+  
+  .row button.danger:hover {
+    background-color: #b91c1c;
+  }
+  
+  .form {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form label {
+    font-weight: 600;
+    color: #334155;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  
+  .form input,
+  .form textarea,
+  .form select {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+  }
+  
+  .form button[type="submit"] {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 10px 18px;
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .form button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .form button[type="submit"]:hover:not(:disabled) {
+    background-color: #1d4ed8;
+  }
+  
+  .story-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .story-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+  
+  .story-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .story-title {
+    margin: 0 0 4px;
+    color: #1e293b;
+    font-size: 16px;
+  }
+  
+  .story-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  
+  /* priority badges */
+  .priority-high   { background: #fee2e2; color: #991b1b; }
+  .priority-medium { background: #fef3c7; color: #92400e; }
+  .priority-low    { background: #dcfce7; color: #166534; }
+  
+  /* status badges */
+  .story-status-todo       { background: #e2e8f0; color: #334155; }
+  .story-status-inprogress { background: #dbeafe; color: #1e40af; }
+  .story-status-done       { background: #dcfce7; color: #166534; }
+  
+  .story-assignee {
+    color: #475569;
+    font-size: 12px;
+  }
+  
+  .story-description {
+    margin: 10px 0 0;
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  
+  .story-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  .story-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #2563eb;
+    color: #fff;
+  }
+  
+  .story-actions button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .story-actions button.secondary {
+    background-color: #64748b;
+  }
+  
+  .story-actions button.secondary:hover {
+    background-color: #475569;
+  }
+  
+  .story-actions button.danger {
+    background-color: #dc2626;
+  }
+  
+  .story-actions button.danger:hover {
+    background-color: #b91c1c;
+  }
+  
+  .message {
+    font-size: 14px;
+    margin: 8px 0 16px;
+  }
+  
+  .message.error { color: #dc2626; }
+  .message.success { color: #16a34a; }
+  
+  .empty {
+    color: #64748b;
+    font-style: italic;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+  }
+  
+  .filter-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-row button {
+    padding: 6px 12px;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+  }
+  
+  .filter-row button.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+  }
+  
+  .status {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-planning  { background: #fef3c7; color: #92400e; }
+  .status-active    { background: #dcfce7; color: #166534; }
+  .status-completed { background: #e2e8f0; color: #334155; }

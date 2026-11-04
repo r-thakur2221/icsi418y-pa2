@@ -53,6 +53,9 @@ export const ViewProjects = () => {
         <Link to="/projects/create">
           <button>+ Create Project</button>
         </Link>
+        <Link to="/backlog">
+          <button>View Backlogs</button>
+        </Link>
         <Link to={`/welcome/${user?.username || ""}`}>
           <button className="secondary">Back to Dashboard</button>
         </Link>
@@ -112,6 +115,12 @@ export const ViewProjects = () => {
                   <td>{formatLead(p.project_lead_id)}</td>
                   <td>{p.member_count ?? "—"}</td>
                   <td className="action-cell">
+                    {/* NEW: backlog entry point */}
+                    <button
+                      onClick={() => navigate(`/projects/${p._id}/backlog`)}
+                    >
+                      Backlog
+                    </button>
                     {userIsLead ? (
                       <>
                         <button
@@ -121,9 +130,7 @@ export const ViewProjects = () => {
                         </button>
                         <button
                           className="secondary"
-                          onClick={() =>
-                            navigate(`/projects/${p._id}/members`)
-                          }
+                          onClick={() => navigate(`/projects/${p._id}/members`)}
                         >
                           Manage Members
                         </button>

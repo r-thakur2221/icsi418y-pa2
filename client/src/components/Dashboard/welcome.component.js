@@ -51,6 +51,9 @@ export const Welcome = () => {
         <Link to="/projects/create">
           <button>+ Create Project</button>
         </Link>
+        <Link to="/backlog">
+          <button>View Backlogs</button>
+        </Link>
         <button className="secondary" onClick={handleLogout}>
           Logout
         </button>
@@ -70,21 +73,24 @@ export const Welcome = () => {
               <ul className="dash-list">
                 {led.map((p) => (
                   <li key={p._id}>
-                  <div>
-                    <strong>{p.name}</strong>
-                    <span className={`status status-${p.status.toLowerCase()}`}>
-                      {p.status}
-                    </span>
-                  </div>
-                  <div className="li-actions">
-                    <Link to={`/projects/${p._id}/edit`}>
-                      <button>Edit</button>
-                    </Link>
-                    <Link to={`/projects/${p._id}/members`}>
-                      <button className="secondary">Members</button>
-                    </Link>
-                  </div>
-                </li>
+                    <div>
+                      <strong>{p.name}</strong>
+                      <span className={`status status-${p.status.toLowerCase()}`}>
+                        {p.status}
+                      </span>
+                    </div>
+                    <div className="li-actions">
+                      <Link to={`/projects/${p._id}/backlog`}>
+                        <button>Backlog</button>
+                      </Link>
+                      <Link to={`/projects/${p._id}/edit`}>
+                        <button>Edit</button>
+                      </Link>
+                      <Link to={`/projects/${p._id}/members`}>
+                        <button className="secondary">Members</button>
+                      </Link>
+                    </div>
+                  </li>
                 ))}
               </ul>
             )}
@@ -110,6 +116,11 @@ export const Welcome = () => {
                         ? `${p.project_lead_id.f_name} ${p.project_lead_id.l_name}`
                         : "—"}
                     </small>
+                    <div className="li-actions">
+                      <Link to={`/projects/${p._id}/backlog`}>
+                        <button>Backlog</button>
+                      </Link>
+                    </div>
                   </li>
                 ))}
               </ul>

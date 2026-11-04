@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const ProjectModel = require("./../models/project.model");
 const UserModel = require("./../models/user.model");
 const ProjectMembershipModel = require("./../models/projectMembership.model");
+const UserStoryModel = require("./../models/userStory.model");
+
 
 // Helper: is the requester the project lead?
 const isProjectLead = async (projectId, requesterId) => {
@@ -136,6 +138,19 @@ router.route("/:userId").delete(async (req, res, next) => {
       return res
         .status(403)
         .json({ success: false, msg: "The Project Lead cannot be removed from the project." });
+    }
+
+    // NEW: block removal if this member has any stories assigned in THIS project
+    const assignedCount = await UserStoryModel.countDocuments({
+      project_id: projectId,
+      assigned_user_id: userId,
+    });
+    
+    if (assignedCount > 0) {
+      return res.status(409).json({
+        success: false,
+        msg: `Cannot remove this member: they have ${assignedCount} assigned story(ies) in this project. Reassign, unassign, or delete those stories first.`,
+      });
     }
 
     const deleted = await ProjectMembershipModel.findOneAndDelete({

@@ -6,17 +6,19 @@ University at Albany
 
 # ICSI 418Y - Programming Assignment 2
 
-Full-stack Login and Signup application built with React, Node.js, Express, and MongoDB.
+A Full-stack web app that extends PA3's project management system with **user stories** and **project backlogs**. Users create projects, manage members, and track stories through `To Do` → `In Progress` → `Done`.
 
 ## Features
 
 - Signup with first name, last name, username, and password
-- Login with username and password
-- Unique username enforcement
-- Client-side and server-side validation
-- Success and error messages in the UI
-- Welcome page after successful login
-- 404 page for unknown routes
+- Projects: create, edit, delete (Lead only); statuses: Planning, Active, Completed
+- Members: add/remove; Lead cannot be removed; member with assigned stories cannot be removed
+- Stories: create with title, description, priority, assignee; new stories start as To Do
+- Priority: High, Medium, Low
+- Backlog: view all stories per project, switch projects, empty-state message
+- Edit / Delete: full editing with Cancel; delete with confirmation
+
+
 
 ## Tech Stack
 
@@ -33,7 +35,7 @@ Full-stack Login and Signup application built with React, Node.js, Express, and 
 1. Clone the repository:
 
 ```
-git clone https://github.com/<your-username>/ICSI418Y-PA2.git
+git clone https://github.com/r-thakur2221/ICSI418Y-PA2.git
 cd ICSI418Y-PA2
 ```
 
