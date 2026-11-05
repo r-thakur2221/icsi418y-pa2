@@ -6,11 +6,8 @@ import httpClient from "./../../util/httpClient";
 const PRIORITIES = ["High", "Medium", "Low"];
 const STATUSES = ["To Do", "In Progress", "Done"];
 
-const priorityClass = (p) =>
-  `priority-${(p || "").toLowerCase()}`;
-
-const statusClass = (s) =>
-  `story-status-${(s || "").toLowerCase().replace(/\s+/g, "")}`;
+const priorityClass = (p) => `priority-${(p || "").toLowerCase()}`;
+const statusClass = (s) => `story-status-${(s || "").toLowerCase().replace(/\s+/g, "")}`;
 
 const emptyForm = {
   title: "",
@@ -50,7 +47,7 @@ export const ProjectBacklog = () => {
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState(emptyForm);
 
-  // simple client-side filter (all statuses always loaded; filter is only a view toggle)
+  // filter
   const [statusFilter, setStatusFilter] = useState("All");
 
   // Load project list for the switcher once
@@ -75,7 +72,6 @@ export const ProjectBacklog = () => {
     setLoading(true);
     setMessage("");
     setIsError(false);
-    // Assignment/editing rules: clear any open editing form on project switch
     setEditingId(null);
     setEditForm(emptyForm);
     setCreateForm(emptyForm);
@@ -110,9 +106,6 @@ export const ProjectBacklog = () => {
     };
   }, [selectedProjectId]);
 
-  // Members for the assignment dropdown: current project members only
-  // (the backend already auto-adds the Project Lead as a member on project create,
-  // so the Lead appears here naturally).
   const memberOptions = useMemo(
     () =>
       members.map((m) => ({
@@ -125,9 +118,7 @@ export const ProjectBacklog = () => {
 
   const refreshStories = async () => {
     if (!selectedProjectId) return;
-    const res = await httpClient.get(
-      `/projects/${selectedProjectId}/stories`
-    );
+    const res = await httpClient.get(`/projects/${selectedProjectId}/stories`);
     setStories(res.data.stories || []);
   };
 
@@ -160,7 +151,6 @@ export const ProjectBacklog = () => {
 
     setSaving(true);
     try {
-      // status is ignored by backend on create (forced to "To Do")
       await httpClient.post(`/projects/${selectedProjectId}/stories`, {
         title: createForm.title,
         description: createForm.description,
@@ -237,16 +227,13 @@ export const ProjectBacklog = () => {
 
     setSaving(true);
     try {
-      await httpClient.put(
-        `/projects/${selectedProjectId}/stories/${editingId}`,
-        {
-          title: editForm.title,
-          description: editForm.description,
-          priority: editForm.priority,
-          status: editForm.status,
-          assigned_user_id: editForm.assigned_user_id || null,
-        }
-      );
+      await httpClient.put(`/projects/${selectedProjectId}/stories/${editingId}`, {
+        title: editForm.title,
+        description: editForm.description,
+        priority: editForm.priority,
+        status: editForm.status,
+        assigned_user_id: editForm.assigned_user_id || null,
+      });
       setIsError(false);
       setMessage("Story updated.");
       setEditingId(null);
@@ -266,19 +253,15 @@ export const ProjectBacklog = () => {
 
   /* ---------------- DELETE ---------------- */
   const handleDelete = async (story) => {
-    if (!window.confirm(`Delete story "${story.title}"? This cannot be undone.`))
-      return;
+    if (!window.confirm(`Delete story "${story.title}"? This cannot be undone.`)) return;
 
     setMessage("");
     setIsError(false);
     setSaving(true);
     try {
-      await httpClient.delete(
-        `/projects/${selectedProjectId}/stories/${story._id}`
-      );
+      await httpClient.delete(`/projects/${selectedProjectId}/stories/${story._id}`);
       setIsError(false);
       setMessage("Story deleted.");
-      // If we were editing that story, clear the form
       if (editingId === story._id) {
         setEditingId(null);
         setEditForm(emptyForm);
@@ -298,9 +281,7 @@ export const ProjectBacklog = () => {
 
   /* ---------------- RENDER ---------------- */
   const visibleStories =
-    statusFilter === "All"
-      ? stories
-      : stories.filter((s) => s.status === statusFilter);
+    statusFilter === "All" ? stories : stories.filter((s) => s.status === statusFilter);
 
   return (
     <div className="page">
@@ -340,13 +321,9 @@ export const ProjectBacklog = () => {
         ))}
       </select>
 
-      {message && (
-        <p className={`message ${isError ? "error" : "success"}`}>{message}</p>
-      )}
+      {message && <p className={`message ${isError ? "error" : "success"}`}>{message}</p>}
 
-      {!selectedProjectId && (
-        <p className="empty">Select a project to view its backlog.</p>
-      )}
+      {!selectedProjectId && <p className="empty">Select a project to view its backlog.</p>}
 
       {loading && selectedProjectId && <p>Loading backlog...</p>}
 
@@ -354,69 +331,69 @@ export const ProjectBacklog = () => {
         <>
           <h3>
             {project.name}
-            <span
-              className={`status status-${project.status.toLowerCase()}`}
-            >
+            <span className={`status status-${project.status.toLowerCase()}`}>
               {project.status}
             </span>
           </h3>
           <p className="subtitle">{project.description}</p>
 
-          {/* CREATE FORM */}
-          <form className="form" onSubmit={handleCreate}>
-            <h4 style={{ margin: 0, color: "#1e293b" }}>Create Story</h4>
+          {/* CREATE FORM — HIDDEN IF EDITING */}
+          {!editingId && (
+            <form className="form" onSubmit={handleCreate}>
+              <h4 style={{ margin: 0, color: "#1e293b" }}>Create Story</h4>
 
-            <label>Title*</label>
-            <input
-              type="text"
-              name="title"
-              value={createForm.title}
-              onChange={handleCreateChange}
-              placeholder="e.g. View campus event details"
-            />
+              <label>Title*</label>
+              <input
+                type="text"
+                name="title"
+                value={createForm.title}
+                onChange={handleCreateChange}
+                placeholder="e.g. View campus event details"
+              />
 
-            <label>Description* (As a [user], I want [goal], so that [benefit].)</label>
-            <textarea
-              name="description"
-              rows={3}
-              value={createForm.description}
-              onChange={handleCreateChange}
-              placeholder="As a student, I want to view details of a campus event, so that I can decide whether to attend."
-            />
+              <label>Description* (As a [user], I want [goal], so that [benefit].)</label>
+              <textarea
+                name="description"
+                rows={3}
+                value={createForm.description}
+                onChange={handleCreateChange}
+                placeholder="As a student, I want to view details of a campus event, so that I can decide whether to attend."
+              />
 
-            <label>Priority*</label>
-            <select
-              name="priority"
-              value={createForm.priority}
-              onChange={handleCreateChange}
-            >
-              {PRIORITIES.map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-            </select>
+              <label>Priority*</label>
+              <select
+                name="priority"
+                value={createForm.priority}
+                onChange={handleCreateChange}
+              >
+                {PRIORITIES.map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
 
-            <label>Assign To</label>
-            <select
-              name="assigned_user_id"
-              value={createForm.assigned_user_id}
-              onChange={handleCreateChange}
-            >
-              <option value="">Unassigned</option>
-              {memberOptions.map((m) => (
-                <option key={m._id} value={m._id}>
-                  {m.label}
-                </option>
-              ))}
-            </select>
+              <label>Assign To</label>
+              <select
+                name="assigned_user_id"
+                value={createForm.assigned_user_id}
+                onChange={handleCreateChange}
+              >
+                <option value="">Unassigned</option>
+                {memberOptions.map((m) => (
+                  <option key={m._id} value={m._id}>
+                    {m.label}
+                  </option>
+                ))}
+              </select>
 
-            <button type="submit" disabled={saving}>
-              {saving ? "Saving..." : "Create Story"}
-            </button>
-          </form>
+              <button type="submit" disabled={saving}>
+                {saving ? "Saving..." : "Create Story"}
+              </button>
+            </form>
+          )}
 
-          {/* EDIT FORM (shown above the list when editing) */}
+          {/* EDIT FORM — SHOWN ONLY IF EDITING */}
           {editingId && (
             <form className="form" onSubmit={handleSaveEdit}>
               <h4 style={{ margin: 0, color: "#1e293b" }}>Edit Story</h4>
@@ -493,7 +470,7 @@ export const ProjectBacklog = () => {
             </form>
           )}
 
-          {/* FILTER (view-only; all statuses still loaded) */}
+          {/* FILTER */}
           <h3>Stories ({stories.length})</h3>
           <div className="filter-row">
             {["All", ...STATUSES].map((f) => (

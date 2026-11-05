@@ -42,7 +42,7 @@ export const Signup = () => {
     httpClient
       .post("/auth/register", form)
       .then((response) => {
-        console.log("Signup success >>", response.data);
+        //console.log("Signup success >>", response.data);
         setIsError(false);
         setMessage("Signup successful! Redirecting to login...");
         // clear form
@@ -51,7 +51,7 @@ export const Signup = () => {
         setTimeout(() => navigate("/"), 1500);
       })
       .catch((err) => {
-        console.log("Signup error >>", err);
+        //console.log("Signup error >>", err);
         setIsError(true);
         setMessage(
           err.response?.data?.msg ||
