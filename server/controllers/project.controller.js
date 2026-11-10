@@ -14,7 +14,7 @@ const isLead = (project, requesterId) =>
   requesterId &&
   project.project_lead_id.toString() === requesterId.toString();
 
-/* POST /projects — create                                             */
+/* POST /projects — create  */
 router.route("/").post(async (req, res, next) => {
   try {
     const { name, description, status, project_lead_id } = req.body;
@@ -67,7 +67,7 @@ router.route("/").post(async (req, res, next) => {
   }
 });
 
-/* GET /projects — list                  */
+/* GET /projects — list */
 
 router.route("/").get(async (req, res, next) => {
   try {
@@ -105,7 +105,7 @@ router.route("/").get(async (req, res, next) => {
   }
 });
 
-/* GET /projects/:id — single                                          */
+/* GET /projects/:id — single */
 router.route("/:id").get(async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -131,7 +131,7 @@ router.route("/:id").get(async (req, res, next) => {
   }
 });
 
-/* PUT /projects/:id — full update (lead only)                         */
+/* PUT /projects/:id — full update (lead only) */
 router.route("/:id").put(async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -235,7 +235,7 @@ router.route("/:id/status").patch(async (req, res, next) => {
   }
 });
 
-/* DELETE /projects/:id — optional (lead only)                         */
+/* DELETE /projects/:id — optional (lead only)*/
 router.route("/:id").delete(async (req, res, next) => {
   try {
     const { id } = req.params;

@@ -88,28 +88,4 @@ npm start
 
 Open http://localhost:3000 in the browser.
 
-
-## Error Handling
-
-- Empty signup or login fields show an error message
-- Duplicate username is rejected
-- Non-existent username shows an error
-- Incorrect password shows an error
-- Correct credentials redirect to the Welcome page
-- Database or server errors show a fallback message
-
-## MongoDB Schema
-
-Collection: users
-
-```
-{
-  _id:      ObjectId,
-  f_name:   String,
-  l_name:   String,
-  username: String (unique),
-  password: String
-}
-```
-
 Note: Passwords are stored as plain text for this assignment. In production they should be hashed with bcrypt.
